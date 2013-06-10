@@ -1,0 +1,25 @@
+{
+    "name": "claroline/core-bundle",
+    "description": "Claroline core",
+    "keywords": ["Claroline","Core"],
+    "homepage": "http://probesys.com",
+    "type": "library",
+    "license": "todo",
+    "authors": [
+        {
+            "name": "todo",
+            "email": "todo@todo.com",
+            "homepage": "http://claroline.net"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "symfony/framework-bundle":  "2.*",
+        "symfony/symfony":           "2.*"
+
+    },
+    "autoload": {
+        "psr-0": { "Claroline\\CoreBundle": "" }
+    },
+    "target-dir": "Claroline/CoreBundle"
+}
