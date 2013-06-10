@@ -1,0 +1,86 @@
+{% twig_js name="ResourceManagerThumbnail" %}
+
+<div class='checkbox'>
+    <input type="checkbox"
+        value="{{ resource.id }}"
+        data-resource-name="{{ resource.name }}"
+        {% if isSelectionAllowed == false %}style="visibility: collapse;"{% endif %}
+        />
+</div>
+
+<div class="resource-element"
+    style="background-image: url('{{ webRoot }}{{ resource.large_icon }}');"
+    data-id="{{ resource.id }}"
+    data-type="{{ resource.type }}"
+    data-type-id="{{ resource.resource_type_id }}"
+    >
+
+</div>
+{% if hasMenu == true %}
+    <div class="dropdown" rel="tooltip" title="{{ resource.name }}">
+        <a class="dropdown-toggle name dropdown-thumbnail" role="button" data-toggle="dropdown" href="#">
+            <div class="resource-name">{{ resource.displayableName|raw }} <i class="icon-caret-down"></i></div>
+        </a>
+        <ul class="dropdown-menu" role="menu">
+            <li>
+                {% if resource.can_edit == true %}
+                    <a class="resource-menu-action" data-action="rename" data-action-type="display-form" data-is-custom="no" data-id="{{ resource.id }}" tabindex="-1" href="#">
+                        {{ 'rename'|trans({}, 'platform') }}
+                    </a>
+                {% else %}
+                    <a class="dropdown-menu-item-disabled">
+                        {{ 'rename'|trans({}, 'platform') }}
+                    </a>
+                {% endif %}
+                {% if resource.can_export == true %}
+                    <a class="resource-menu-action" data-action="download" data-is-custom="no" data-id="{{ resource.id }}" tabindex="-1" href="#">
+                        {{ 'download'|trans({}, 'platform') }}
+                    </a>
+                {% else %}
+                    <a class="dropdown-menu-item-disabled">
+                        {{ 'download'|trans({}, 'platform') }}
+                    </a>
+                {% endif %}
+                {% if resource.can_delete == true %}
+                    <a class="resource-menu-action" data-action="delete" data-is-custom="no" data-id="{{ resource.id }}" tabindex="-1" href="#">
+                        {{ 'delete'|trans({}, 'platform') }}
+                    </a>
+                {% else %}
+                    <a class="dropdown-menu-item-disabled">
+                        {{ 'delete'|trans({}, 'platform') }}
+                    </a>
+                {% endif %}
+                {% if resource.can_edit == true %}
+                    <a class="resource-menu-action" data-action="edit-rights" data-action-type="display-form" data-is-custom="no" data-id="{{ resource.id }}" tabindex="-1" href="#">
+                        {{ 'manage_rights'|trans({}, 'platform') }}
+                    </a>
+                {% else %}
+                    <a class="dropdown-menu-item-disabled">
+                        {{ 'manage_rights'|trans({}, 'platform') }}
+                    </a>
+                {% endif %}
+                {% if resource.can_edit == true %}
+                    <a class="resource-menu-action" data-action="edit-properties" data-action-type="display-form" data-is-custom="no" data-id="{{ resource.id }}" tabindex="-1" href="#">
+                        {{ 'properties'|trans({}, 'platform') }}
+                    </a>
+                {% else %}
+                    <a class="dropdown-menu-item-disabled">
+                        {{ 'properties'|trans({}, 'platform') }}
+                    </a>
+                {% endif %}
+            </li>
+            {% if customActions|length > 0 %}
+            <li class="divider"></li>
+                {% for customAction, attributes in customActions %}
+                    <li>
+                        <a class="resource-menu-action" data-action="{{ customAction }}" data-is-custom="yes" data-id="{{ resource.id }}" tabindex="-1" href="#">
+                            {{ attributes.name }}
+                        </a>
+                    </li>
+                {% endfor %}
+            {% endif %}
+        </ul>
+    </div>
+{% else %}
+    <div class="resource-name">{{ resource.displayableName|raw }}&nbsp;&nbsp;&nbsp;</div>
+{% endif %}

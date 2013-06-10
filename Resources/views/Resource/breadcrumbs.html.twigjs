@@ -1,0 +1,14 @@
+{% twig_js name="ResourceManagerBreadcrumbs" %}
+
+{% for resource in resources %}
+    <a href="#" data-resource-id="{{ resource.id }}">
+        {% if loop.first %}
+            <i class="icon-folder-open-alt"></i> {{ 'resources'|trans({}, 'platform') }}
+        {% else %}
+            {{ resource.name }}
+        {% endif %}
+    </a>
+    {% if not loop.last %}
+        <span class="divider"> / </span>
+    {% endif %}
+{% endfor %}

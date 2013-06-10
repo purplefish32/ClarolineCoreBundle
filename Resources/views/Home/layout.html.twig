@@ -1,0 +1,25 @@
+{% extends 'ClarolineCoreBundle::layout.html.twig' %}
+
+{% block content %}
+
+<div id="homePath" class="hide">{{ path("claro_index") }}</div>
+
+{% if content != null %}
+
+{{ creator | raw }}
+
+<div class="content row-fluid">
+    {{ content | raw }}
+</div>
+
+{% endif %}
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% if is_granted('ROLE_ADMIN') %}
+        <script type="text/javascript" src="{{ asset('bundles/frontend/jquery/jquery-ui-1.9.2.custom/js/jquery-ui-1.9.2.custom.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('bundles/clarolinecore/js/home/content.js') }}"></script>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,11 @@
+plugin:
+  has_options: true
+
+  resources:
+    - class: Valid\WithCustomResources\Entity\ResourceA
+      name: ResourceA
+      is_browsable: true
+
+    - class: Valid\WithCustomResources\Entity\ResourceB
+      name: ResourceB
+      is_browsable: true
